@@ -2,6 +2,7 @@
 source "https://rubygems.org"
 
 gem 'rspec', '~> 3.4.0'
+gem 'rspec-mocks', '~> 3.4.0'
 gem 'simplecov', '~> 0.10.0'
-gem 'simplecov-rcov'
 gem 'rake'
+gem "codeclimate-test-reporter", "~> 1.0.0"
