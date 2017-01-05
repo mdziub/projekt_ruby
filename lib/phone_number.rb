@@ -9,7 +9,7 @@ class PhoneNumber
 
   def initialize(phone_number, telephone_type)
     phone_number = phone_number.delete '-' if phone_number.is_a? String
-    @phone_number = phone_number
+    @phone_number = phone_number.to_s
     @telephone_type = telephone_type
   end
 

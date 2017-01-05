@@ -11,12 +11,12 @@ class Phonebook
     contacts << contact if contact.instance_of? Contact
   end
 
-  def find_by_person(person)
-    contacts.select { |x| x.person.first_name == person.first_name }
+  def find_by_surname(surname)
+    contacts.select { |x| x.person.surname == surname }
   end
 
   def find_by_number(phonenumber)
-    contacts.select { |x| x.phone_numbers.include? phonenumber }
+    selected = @contacts.select { |x| x.phone_numbers.any? { |y| y.phone_number == phonenumber } }
   end
 
   def save_to_file(filename)
@@ -28,6 +28,12 @@ class Phonebook
   def load_from_file(filename)
     filename = filename.to_s.delete '/'
     @contacts = Marshal.load(File.read('saved_phonebooks/' + filename))
+  end
+
+  def print
+    @contacts.each do |contact|
+      contact.print
+    end
   end
 
   def export_to_html(filename)

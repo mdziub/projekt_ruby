@@ -55,14 +55,14 @@ RSpec.describe 'Phonebook' do
     end
   end
 
-  describe '#find_by_person' do
+  describe '#find_by_surname' do
     it 'should be defined' do
-      expect { create_phonebook.find_by_person(create_person) }.not_to raise_error
+      expect { create_phonebook.find_by_surname(create_person) }.not_to raise_error
     end
 
-    it 'should find right contact by person data' do
+    it 'should find right contact by surname' do
       phonebook = create_phonebook_with_contacts
-      found_person = phonebook.find_by_person(create_person).first.person
+      found_person = phonebook.find_by_surname(create_person.surname).first.person
       expect(found_person).to eq(create_person)
     end
   end
@@ -73,7 +73,8 @@ RSpec.describe 'Phonebook' do
     end
     it 'should find right contact by phonenumber' do
       phonebook = create_phonebook_with_contacts
-      found_contact = phonebook.find_by_number(create_contact.phone_numbers.first).first
+      number = create_contact.phone_numbers.first.phone_number
+      found_contact = phonebook.find_by_number(number).first
       expect(found_contact.person).to eq(create_person)
     end
   end
